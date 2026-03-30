@@ -3,7 +3,8 @@ import 'package:chatapp/pages/settings_page.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
-  const MyDrawer({super.key});
+  final void Function()? onLogout;
+  const MyDrawer({super.key, required this.onLogout});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,16 @@ class MyDrawer extends StatelessWidget {
               leading: Icon(Icons.settings),
               onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage()));},
             ),
-          )
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 25),
+            child: ListTile(
+              title: Text("L O G O U T"),
+              leading: Icon(Icons.logout),
+              onTap: onLogout,
+            ),
+          ),
         ],
       ),
     );
