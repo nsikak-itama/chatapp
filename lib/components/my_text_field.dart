@@ -10,6 +10,7 @@ class MyTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      style: TextStyle(color: Theme.of(context).colorScheme.primary),
       controller: controller,
       focusNode: focusNode,
       obscureText: obscuretext,
