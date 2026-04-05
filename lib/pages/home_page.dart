@@ -26,15 +26,17 @@ class _HomePageState extends State<HomePage> {
     _loadUserName();
   }
 
-  Future<void> _loadUserName() async {
-    final uid = _auth.currentUser?.uid;
-    if(uid != null){
-      final doc = await _firestore.collection('users').doc(uid).get();
+ Future<void> _loadUserName() async {
+  final uid = _auth.currentUser?.uid;
+  if (uid != null) {
+    final doc = await _firestore.collection('users').doc(uid).get();
+    if (mounted) {          // ← guard against widget being disposed
       setState(() {
         _userName = doc.data()?['name'] ?? '';
       });
     }
   }
+}
   
   void signOut(){
     final authService = Provider.of<AuthService>(context, listen: false);
@@ -51,6 +53,7 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("Hello,", style: TextStyle(fontSize: 14, color: Theme.of(context).colorScheme.primary),),
+            _userName.isEmpty ? SizedBox(height: 36, width: 120, child: LinearProgressIndicator(),) :
             Text(_userName, style: TextStyle(fontSize: 30, color: Theme.of(context).colorScheme.inversePrimary, fontWeight: FontWeight.bold),),
           ],
         ),

@@ -9,10 +9,6 @@ class AuthService extends ChangeNotifier{
   Future<UserCredential> signInWithEmailAndPassword(String email, String password) async{
     try{
       UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
-      await _fireStore.collection('users').doc(userCredential.user!.uid).set({
-        'uid' : userCredential.user!.uid,
-        'email' : email
-      }, SetOptions(merge: true) );
       return userCredential;
     } on FirebaseAuthException catch (e){
       throw Exception(e.code);
