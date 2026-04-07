@@ -16,8 +16,8 @@ class MyDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 25),
             child: ListTile(
-              title: Text("H O M E"),
-              leading: Icon(Icons.home),
+              title: Text("Home", style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary)),
+              leading: Icon(Icons.home, color: Theme.of(context).colorScheme.inversePrimary,),
               onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));},
             ),
           ),
@@ -25,17 +25,17 @@ class MyDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 25),
             child: ListTile(
-              title: Text("S E T T I N G S"),
-              leading: Icon(Icons.settings),
+              title: Text("Settings", style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary)),
+              leading: Icon(Icons.settings, color: Theme.of(context).colorScheme.inversePrimary,),
               onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage()));},
             ),
           ),
-
+          Spacer(),
           Padding(
-            padding: const EdgeInsets.only(left: 25),
+            padding: const EdgeInsets.only(left: 25, bottom: 45),
             child: ListTile(
-              title: Text("L O G O U T"),
-              leading: Icon(Icons.logout),
+              title: Text("logout", style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary)),
+              leading: Icon(Icons.logout, color: Theme.of(context).colorScheme.inversePrimary),
               onTap: onLogout,
             ),
           ),
