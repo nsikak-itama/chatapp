@@ -2,10 +2,17 @@ import 'package:chatapp/components/my_drawer.dart';
 import 'package:chatapp/components/user_tile.dart';
 import 'package:chatapp/pages/chat_page.dart';
 import 'package:chatapp/services/auth/auth_service.dart';
+import 'package:chatapp/services/chat/chat_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
+
+String _formatTime(Timestamp timestamp){
+  final date = timestamp.toDate();
+  return DateFormat('h:mm a').format(date);
+}
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -87,15 +94,35 @@ class _HomePageState extends State<HomePage> {
     Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
 
     if(_auth.currentUser?.email != data['email']){
-      return UserTile(
-        text: data['name'],
-        onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage(
-          receiverUserEmail: data['email'], 
-          receiverUserId: data['uid'],
-            receiverUserName: data['name'],
-          )));
+      return StreamBuilder<DocumentSnapshot?>(
+        stream: ChatService().getLastMessage(_auth.currentUser!.uid, data['uid']), 
+        builder: (context, snapshot) {
+          String lastMessage = '';
+          String time = "";
+
+          if(snapshot.hasData && snapshot.data != null){
+            final messageData = snapshot.data!.data() as Map<String, dynamic>;
+            lastMessage = messageData['message'] ?? "";
+
+            final  timestamp = messageData['timestamp'] as Timestamp;
+            time = _formatTime(timestamp);
           }
+          return UserTile(
+            text: data['name'],
+            onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage(
+              receiverUserEmail: data['email'], 
+              receiverUserId: data['uid'],
+              receiverUserName: data['name'],
+            )
+          )
+          );
+          }, 
+          message: lastMessage.isEmpty? "No messages yet" : lastMessage, 
+          time: time,
       );
+        },
+      );
+
     } else{
       return Container();
     }
