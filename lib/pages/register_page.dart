@@ -33,7 +33,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Center(
@@ -48,17 +48,17 @@ class _RegisterPageState extends State<RegisterPage> {
               SizedBox(height: 50),
               Text("Create a new account", style: TextStyle(fontSize: 16)),
               SizedBox(height: 20),
-              MyTextField(controller: nameController, hintText: "Full name", obscuretext: false),
+              MyTextField(controller: nameController, hintText: "Full name", obscuretext: false, icon: Icons.person,),
               SizedBox(height: 10),
               MyTextField(
                 controller: emailController, 
                 hintText: "Email Address", 
-                obscuretext: false,
+                obscuretext: false, icon: Icons.email,
               ),
               SizedBox(height: 10),
-              MyTextField(controller: passwordController, hintText: "Password", obscuretext: true),
+              MyTextField(controller: passwordController, hintText: "Password", obscuretext: true, icon: Icons.lock,),
               SizedBox(height: 20),
-              MyTextField(controller: confirmPasswordController, hintText: "Confirm Password", obscuretext: true),
+              MyTextField(controller: confirmPasswordController, hintText: "Confirm Password", obscuretext: true, icon: Icons.lock,),
               SizedBox(height: 20),
               MyButton(text: "Sign up", onTap: signUp,),
               SizedBox(height: 50),

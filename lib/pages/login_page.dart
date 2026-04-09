@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Center(
@@ -42,15 +42,17 @@ class _LoginPageState extends State<LoginPage> {
                 size: 80,
               ),
               SizedBox(height: 50),
-              Text("Welcome back, you've been missed", style: TextStyle(fontSize: 16)),
+              Text("Welcome back", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
+              SizedBox(height: 20),
+              Text("You've been missed!", style: TextStyle(fontSize: 16)),
               SizedBox(height: 20),
               MyTextField(
                 controller: emailController, 
                 hintText: "Email Address", 
-                obscuretext: false,
+                obscuretext: false, icon: Icons.email,
               ),
               SizedBox(height: 10),
-              MyTextField(controller: passwordController, hintText: "Password", obscuretext: true),
+              MyTextField(controller: passwordController, hintText: "Password", obscuretext: true, icon: Icons.lock),
               SizedBox(height: 20),
               MyButton(text: "Login", onTap: signIn,),
               SizedBox(height: 50),
