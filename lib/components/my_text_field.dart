@@ -12,25 +12,21 @@ class MyTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(icon),
+        Icon(icon, color: Theme.of(context).colorScheme.inversePrimary,),
         SizedBox(width: 20),
         Expanded(
           child: TextField(
-            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+            style: TextStyle(color: Theme.of(context).colorScheme.secondaryContainer),
             controller: controller,
             focusNode: focusNode,
             obscureText: obscuretext,
             decoration: InputDecoration(
-              border: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.grey.shade200
-                )
-              ),
-              
-  
-
               hintText: hintText,
-              hintStyle: TextStyle(color: Colors.grey)
+              hintStyle: TextStyle(color: Colors.grey),
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Theme.of(context).colorScheme.inversePrimary,width: 2)
+              ),
+              border: UnderlineInputBorder()
             ),
           ),
         ),
