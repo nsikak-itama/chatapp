@@ -1,4 +1,5 @@
 import 'package:chatapp/components/my_chat_bubble.dart';
+import 'package:chatapp/components/my_messaging_field.dart';
 import 'package:chatapp/components/my_text_field.dart';
 import 'package:chatapp/services/auth/auth_service.dart';
 import 'package:chatapp/services/chat/chat_service.dart';
@@ -131,16 +132,10 @@ class _ChatPageState extends State<ChatPage> {
   Widget _buildMessageInput(){
     return Padding(
       padding: const EdgeInsets.only(bottom: 50.0, left: 25),
-
       child: Row(
         children: [
           Expanded(
-            child: MyTextField(
-              controller: _messageController, 
-              hintText: "Enter message", 
-              obscuretext: false,
-              focusNode: myFocusNode,
-            ),
+            child: MyMessagingField(controller: _messageController, hinText: "Enter message")
           ),
           IconButton(onPressed: sendMessage, icon: Icon(Icons.send, size: 40,))
         ],
