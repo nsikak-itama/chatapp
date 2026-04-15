@@ -14,14 +14,19 @@ class MyMessagingField extends StatelessWidget {
       children: [
         Expanded(
           child: TextField(
-            
             style: TextStyle(color: Theme.of(context).colorScheme.secondaryContainer),
             controller: controller,
             focusNode: focusNode,
             decoration: InputDecoration(
-              fillColor: Theme.of(context).colorScheme.primary,
+              filled: true,
+              fillColor: Theme.of(context).colorScheme.secondary,
               hintText: hinText,
               hintStyle: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
+              border: InputBorder.none,
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0)
+              )
             ),
             
           ),
