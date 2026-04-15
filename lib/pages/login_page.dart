@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
                 size: 80,
               ),
               SizedBox(height: 50),
-              Text("Welcome back", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
+              Text("Welcome back", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),),
               SizedBox(height: 20),
               Text("You've been missed!", style: TextStyle(fontSize: 16)),
               SizedBox(height: 20),

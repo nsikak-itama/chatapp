@@ -46,7 +46,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 size: 80,
               ),
               SizedBox(height: 50),
-              Text("Create a new account", style: TextStyle(fontSize: 16)),
+              Text("Create a new account", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
               SizedBox(height: 20),
               MyTextField(controller: nameController, hintText: "Full name", obscuretext: false, icon: Icons.person,),
               SizedBox(height: 10),
